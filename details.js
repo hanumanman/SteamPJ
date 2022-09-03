@@ -1,5 +1,4 @@
 
-
 const host = "https://cs-steam-game-api.herokuapp.com";
 const appid = window.location.href.split('?')[1];
 let gameUrl = `${host}/single-game/${appid}`; 
@@ -63,15 +62,12 @@ const renderDetailPage = async (game)=> {
     }
 };
 
-const a = async() => {
+const init = async() => {
     
     gameData = await getSingleGame();
     renderDetailPage(gameData.data);
 };
 
-function b() {
-    console.log(`dmm?`)
-};
 
-a();
+init();
 

@@ -8,30 +8,30 @@ buttons.forEach(button => {
     button.addEventListener("click",() => {
         const offset = button.dataset.carouselBtn === "next" ? 1: -1;
         const slides = button
-            .closest("[data-carousel]")
-            .querySelector("[data-slides]");
-
+        .closest("[data-carousel]")
+        .querySelector("[data-slides]");
+        
         const activeSlide = slides.querySelector("[data-active]");
         let newIndex = [...slides.children].indexOf(activeSlide) + offset;
         if (newIndex < 0) newIndex = slides.children.length - 1;
         if (newIndex >= slides.children.length) newIndex = 0;
-
-
+        
+        
         slides.children[newIndex].dataset.active = true;
         delete activeSlide.dataset.active;
-
+        
         const dots = button
-            .closest("[data-carousel]")
-            .querySelector("[data-dots]");
-
+        .closest("[data-carousel]")
+        .querySelector("[data-dots]");
+        
         const activeDot = dots.querySelector("[data-active]");
         dots.children[newIndex].dataset.active = true;
         delete activeDot.dataset.active;
-
+        
         const details = button
-            .closest("[data-carousel]")
-            .querySelector("[data-detail]");
-
+        .closest("[data-carousel]")
+        .querySelector("[data-detail]");
+        
         const activeDetail = details.querySelector("[data-active]");
         details.children[newIndex].dataset.active = true;
         delete activeDetail.dataset.active;
@@ -61,7 +61,7 @@ const getFeaturedGame = async () => {
 
         const res = await fetch(url);
         const data = await res.json();
-
+        
         console.log("data",data);
         return data;
     } catch(err) {
@@ -69,10 +69,25 @@ const getFeaturedGame = async () => {
     }
 }
 
+const searchGames = async (url) => {
+    try {
+        console.log("search for games");
+        console.log(url);
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+
+        return data;
+
+    } catch(err) {
+        console.log("err",err);
+    }
+}
 
 
 function createGamesResult(game) {
-
+    
     const x = document.createElement('div');
     x.classList.add('game-item', 'd-flex', 'w-100', 'align-items-center');
     x.innerHTML = `<a href="gameDetails.html?${game.appid}"  >
@@ -86,30 +101,6 @@ function createGamesResult(game) {
     return x;
 
 }
-
-
-const renderGamesResults = async (games)=> {
-    try {
-        const searchResults = document.getElementById("searchResults");
-        
-        //Take out the game list div 
-        const gamesList = searchResults.children[1];
-           
-        gamesList.innerHTML = ""; 
-
-        games.forEach((game) => {         
-            gamesList.appendChild( createGamesResult(game) );
-        })
-
-    }   catch (err) {
-        console.log("err",err)
-    }
-}
-
-
-
-
-
 
 function createCarouselItems(game) {
 
@@ -144,6 +135,30 @@ function createGameDetails(game) {
     return x;
 
 }
+
+const renderGamesResults = async (games)=> {
+    try {
+        const searchResults = document.getElementById("searchResults");
+        
+        //Take out the game list div 
+        const gamesList = searchResults.children[1];
+           
+        gamesList.innerHTML = ""; 
+
+        games.forEach((game) => {         
+            gamesList.appendChild( createGamesResult(game) );
+        })
+
+    }   catch (err) {
+        console.log("err",err)
+    }
+}
+
+
+
+
+
+
 
 const renderCarouselItems = async (games)=> {
     try {
@@ -188,21 +203,6 @@ const renderCarouselItems = async (games)=> {
 }
 
 
-const searchGames = async (url) => {
-    try {
-        console.log("search for games");
-        console.log(url);
-
-        const res = await fetch(url);
-        const data = await res.json();
-
-
-        return data;
-
-    } catch(err) {
-        console.log("err",err);
-    }
-}
 
 const nextResults = document.getElementById("resultNextBtn");
 nextResults.addEventListener("click", async()=>{

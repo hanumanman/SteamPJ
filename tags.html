@@ -26,7 +26,7 @@
             <a class="nav-link" href="#">ABOUT</a>
             <a class="nav-link" href="#">SUPPORT</a>
 
-            <div class="mobile-nav">
+            <div class="mobile-nav overflow-auto">
 
                 <a href="index.html"><img id="steam-logo"
                         src="https://store.akamai.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016"
@@ -52,12 +52,12 @@
         <h1 class="my-5">TAGS</h1>
 
 
-        <div class="d-flex px-2">
+        <div id="contents" class="d-flex px-2">
 
             <ul class="sidebar d-flex flex-column mr-3">
                 <li>
 
-                    <a href="">Action</a>
+                    <a href="">Nonsense</a>
                 </li>
 
             </ul>
@@ -65,7 +65,14 @@
             <div id="tagsList">
 
                 <div class="games-list">
-                    <div>whatevs</div>
+                    <div class="game-item d-flex align-items-center"><a href="gameDetails.html?218620">
+                            <img src="https://steamcdn-a.akamaihd.net/steam/apps/218620/header.jpg?t=1541531328" alt=""></a>
+                    
+                        <div class="item-detail d-flex justify-content-between w-100">
+                            <a href="gameDetails.html?218620" class="game-link px-2">PAYDAY 2</a>
+                            <div class="price px-2"> 7.49 $ </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="resultPageNav d-flex justify-content-end">
                     <button class="mx-2" type="button" id="resultPrevBtn">Prev</button>
